@@ -1,0 +1,9 @@
+node_modules
+.next
+.env*
+.DS_Store
+.vscode
+dist
+coverage
+.playwright
+public/Shriya_Patel_Software_Resume.pdf
