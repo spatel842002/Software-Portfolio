@@ -32,10 +32,6 @@ export default function Resume() {
             <Download size={16} /> Download Resume
           </a>
         </div>
-
-        <div className="mt-8 overflow-hidden rounded-xl border border-border bg-surface">
-          <iframe src={pdfPath} title="Shriya Patel — Resume PDF preview" className="h-[70vh] w-full" />
-        </div>
       </section>
       <Footer />
     </main>
