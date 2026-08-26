@@ -1,4 +1,5 @@
 import './globals.css';
+import React, { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { siteMeta } from '../data/site';
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',

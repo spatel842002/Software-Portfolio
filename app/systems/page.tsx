@@ -10,7 +10,7 @@ export default function Systems(){
         <p className="text-muted mt-2">Representative event-driven AI/data platform architecture and design approach.</p>
         <section className="mt-6">
           <h2 className="font-semibold">Representative Architecture</h2>
-          <p className="text-sm text-muted">This diagram represents Shriya's typical approach: ingest → validate → transform → queue/stream → ML/RAG inference → storage → observability. It is illustrative and not tied to a single employer.</p>
+          <p className="text-sm text-muted">This diagram represents Shriya&apos;s typical approach: ingest → validate → transform → queue/stream → ML/RAG inference → storage → observability. It is illustrative and not tied to a single employer.</p>
         </section>
       </section>
       <Footer />

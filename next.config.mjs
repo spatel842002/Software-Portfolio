@@ -2,10 +2,6 @@ const csp = `default-src 'self'; img-src 'self' data: https:; script-src 'self' 
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    appDir: true
-  },
   async headers() {
     return [
       {
