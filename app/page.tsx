@@ -1,73 +1,126 @@
+import Link from 'next/link';
+import { ArrowRight, Boxes, Cloud, Cpu, FileText, Layers, Network, Sparkles } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Link from 'next/link';
+import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/projects';
 import { siteMeta } from '../data/site';
 
+const STATS = [
+  { label: 'Years of experience', value: '4+' },
+  { label: 'Records processed / day', value: '20K+' },
+  { label: 'Page-load reduction', value: '60%' },
+  { label: 'Graduate GPA', value: '4.0' }
+];
+
+const FOCUS_AREAS = [
+  { icon: Layers, title: 'Backend & Distributed Systems', description: 'Microservices, event-driven pipelines, and APIs in Python, Java, and Node.js.' },
+  { icon: Sparkles, title: 'AI, LLM & Machine Learning', description: 'RAG pipelines, LangChain, embeddings, vector search, and reproducible ML systems.' },
+  { icon: Cloud, title: 'Cloud Infrastructure', description: 'AWS and Azure infrastructure, containers, and observability at production scale.' }
+];
+
+const OVERVIEW_CARDS = [
+  { href: '/experience', icon: Boxes, title: 'Experience', description: 'Backend and cloud engineering across data-heavy, event-driven systems.' },
+  { href: '/systems', icon: Network, title: 'Systems thinking', description: 'Clear boundaries, observable workflows, and dependable paths from input to insight.' },
+  { href: '/skills', icon: Cpu, title: 'Tools I use', description: 'Python, Java, AWS, Azure, distributed systems, and applied AI.' }
+];
+
 export default function Home() {
-  const featured = projects.filter((p) => p.featured).slice(0,6);
+  const featured = projects.filter((p) => p.featured).slice(0, 6);
   return (
-    <main>
+    <main id="main">
       <Header />
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <p className="text-sm text-muted">Software Engineer · Arizona, USA</p>
-            <h1 className="text-3xl md:text-4xl font-semibold mt-2">I build reliable software across backend systems, cloud infrastructure, and applied AI.</h1>
-            <p className="mt-4 text-muted max-w-prose">I design scalable services, event-driven workflows, data platforms, and AI-enabled applications using Python, Java, AWS, Azure, and modern distributed-systems practices.</p>
-            <div className="mt-6 flex gap-4">
-              <Link href="/projects" className="inline-block px-4 py-2 bg-accent-500 text-white rounded">Explore Projects</Link>
-              <a href="/resume" className="inline-block px-4 py-2 border rounded">View Resume</a>
-              <a href={`mailto:${siteMeta.email}`} className="inline-block px-4 py-2 text-sm">Email Me</a>
+
+      <section className="relative overflow-hidden">
+        <div className="bg-grid pointer-events-none absolute inset-0 -z-10 h-[520px]" />
+        <div className="mx-auto max-w-6xl px-6 pb-16 pt-16 sm:pt-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent-500" /> Software Engineer · Arizona, USA
+            </span>
+            <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+              I build reliable software across backend systems, cloud infrastructure, and applied AI.
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-balance text-muted sm:text-lg">
+              I design scalable services, event-driven workflows, data platforms, and AI-enabled applications using
+              Python, Java, AWS, Azure, and modern distributed-systems practices.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/projects"
+                className="focus-ring inline-flex items-center gap-2 rounded-md bg-accent-500 px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-glow transition-transform hover:-translate-y-0.5"
+              >
+                Explore Projects <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/resume"
+                className="focus-ring inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-surface-hover"
+              >
+                <FileText size={16} /> View Resume
+              </Link>
+              <a
+                href={`mailto:${siteMeta.email}`}
+                className="focus-ring inline-flex items-center rounded-md px-5 py-2.5 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                Email Me
+              </a>
             </div>
           </div>
-          <div>
-            {/* systems visualization - accessible svg illustration */}
-            <svg role="img" aria-labelledby="vizTitle vizDesc" viewBox="0 0 600 360" className="w-full h-64">
-              <title id="vizTitle">Systems flow visualization</title>
-              <desc id="vizDesc">An abstract visualization showing requests moving through API, services, queue, AI, and observability nodes.</desc>
-              <rect x="20" y="20" width="120" height="60" rx="8" fill="#0f172a"/>
-              <text x="80" y="55" textAnchor="middle" fill="#9ca3af" fontSize="12">API</text>
-              <rect x="180" y="20" width="120" height="60" rx="8" fill="#0f172a"/>
-              <text x="240" y="55" textAnchor="middle" fill="#9ca3af" fontSize="12">Service</text>
-              <rect x="340" y="20" width="120" height="60" rx="8" fill="#0f172a"/>
-              <text x="400" y="55" textAnchor="middle" fill="#9ca3af" fontSize="12">Queue/Stream</text>
-              <rect x="100" y="140" width="120" height="60" rx="8" fill="#0f172a"/>
-              <text x="160" y="175" textAnchor="middle" fill="#9ca3af" fontSize="12">DB</text>
-              <rect x="280" y="140" width="120" height="60" rx="8" fill="#0f172a"/>
-              <text x="340" y="175" textAnchor="middle" fill="#9ca3af" fontSize="12">AI / RAG</text>
-              <line x1="140" y1="50" x2="180" y2="50" stroke="#06b6d4" strokeWidth="2"/>
-              <line x1="300" y1="50" x2="340" y2="50" stroke="#06b6d4" strokeWidth="2"/>
-              <line x1="260" y1="80" x2="260" y2="140" stroke="#06b6d4" strokeWidth="2"/>
-              <circle cx="260" cy="110" r="6" fill="#06b6d4"/>
-            </svg>
-          </div>
-        </div>
 
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {featured.map((p) => (
-              <article key={p.slug} className="border rounded p-4">
-                <h3 className="font-semibold">{p.title}</h3>
-                <p className="text-sm text-muted mt-2">{p.summary}</p>
-                <div className="mt-3 flex items-center justify-between">
-                  <div className="text-xs text-muted">{p.stack.join(' · ')}</div>
-                  <Link href={`/projects/${p.slug}`} className="text-sm underline">Details</Link>
-                  <a href={p.repo} className="text-sm underline" rel="noopener noreferrer">GitHub</a>
-                </div>
-              </article>
+          <dl className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="rounded-xl border border-border bg-surface px-4 py-5 text-center">
+                <dt className="text-xs text-muted">{stat.label}</dt>
+                <dd className="mt-1 font-display text-2xl font-semibold text-accent-600">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
+            {FOCUS_AREAS.map((area) => (
+              <div key={area.title} className="rounded-xl border border-border bg-surface p-5">
+                <area.icon size={20} className="text-accent-600" />
+                <h2 className="mt-3 font-display text-sm font-semibold">{area.title}</h2>
+                <p className="mt-1.5 text-sm text-muted">{area.description}</p>
+              </div>
             ))}
           </div>
-        </section>
-
-        <section className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6" aria-label="Portfolio overview">
-          <div className="border rounded p-5"><h2 className="font-semibold">Experience</h2><p className="text-sm text-muted mt-2">Backend and cloud engineering across data-heavy, event-driven systems.</p><Link href="/experience" className="inline-block mt-4 underline text-sm">View experience</Link></div>
-          <div className="border rounded p-5"><h2 className="font-semibold">Systems thinking</h2><p className="text-sm text-muted mt-2">Clear boundaries, observable workflows, and dependable paths from input to insight.</p><Link href="/systems" className="inline-block mt-4 underline text-sm">Explore systems</Link></div>
-          <div className="border rounded p-5"><h2 className="font-semibold">Tools I use</h2><p className="text-sm text-muted mt-2">Python, Java, AWS, Azure, distributed systems, and applied AI.</p><Link href="/skills" className="inline-block mt-4 underline text-sm">Browse skills</Link></div>
-        </section>
-
+        </div>
       </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <div className="flex items-end justify-between">
+          <h2 className="font-display text-xl font-semibold">Featured Projects</h2>
+          <Link href="/projects" className="focus-ring inline-flex items-center gap-1 text-sm font-medium text-accent-600">
+            View all <ArrowRight size={14} />
+          </Link>
+        </div>
+        <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {featured.map((p) => (
+            <ProjectCard key={p.slug} project={p} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-20" aria-label="Portfolio overview">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {OVERVIEW_CARDS.map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className="focus-ring group rounded-xl border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-card"
+            >
+              <card.icon size={20} className="text-accent-600" />
+              <h2 className="mt-3 font-display font-semibold">{card.title}</h2>
+              <p className="mt-1.5 text-sm text-muted">{card.description}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-600">
+                Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <Footer />
     </main>
   );

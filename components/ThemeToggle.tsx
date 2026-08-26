@@ -1,22 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = typeof window.localStorage?.getItem === 'function' ? window.localStorage.getItem('theme') : null;
-    const prefersDark = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = stored ? stored === 'dark' : prefersDark;
-    document.documentElement.classList.toggle('dark', isDark);
+    // One-time sync from the theme-init script's DOM state (set before hydration) to React state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDark(document.documentElement.classList.contains('dark'));
+    setMounted(true);
   }, []);
 
   function toggleTheme() {
     const nextDark = !dark;
     document.documentElement.classList.toggle('dark', nextDark);
-    if (typeof window.localStorage?.setItem === 'function') {
+    try {
       window.localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+    } catch {
+      // ignore storage errors (private browsing, disabled storage)
     }
     setDark(nextDark);
   }
@@ -27,9 +31,9 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-pressed={dark}
       aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="theme-toggle"
+      className="focus-ring flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted transition-colors hover:text-foreground"
     >
-      {dark ? 'Light' : 'Dark'}
+      {mounted && dark ? <Sun size={16} /> : <Moon size={16} />}
     </button>
   );
 }
