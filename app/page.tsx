@@ -53,11 +53,18 @@ export default function Home() {
                 <p className="text-sm text-muted mt-2">{p.summary}</p>
                 <div className="mt-3 flex items-center justify-between">
                   <div className="text-xs text-muted">{p.stack.join(' · ')}</div>
+                  <Link href={`/projects/${p.slug}`} className="text-sm underline">Details</Link>
                   <a href={p.repo} className="text-sm underline" rel="noopener noreferrer">GitHub</a>
                 </div>
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6" aria-label="Portfolio overview">
+          <div className="border rounded p-5"><h2 className="font-semibold">Experience</h2><p className="text-sm text-muted mt-2">Backend and cloud engineering across data-heavy, event-driven systems.</p><Link href="/experience" className="inline-block mt-4 underline text-sm">View experience</Link></div>
+          <div className="border rounded p-5"><h2 className="font-semibold">Systems thinking</h2><p className="text-sm text-muted mt-2">Clear boundaries, observable workflows, and dependable paths from input to insight.</p><Link href="/systems" className="inline-block mt-4 underline text-sm">Explore systems</Link></div>
+          <div className="border rounded p-5"><h2 className="font-semibold">Tools I use</h2><p className="text-sm text-muted mt-2">Python, Java, AWS, Azure, distributed systems, and applied AI.</p><Link href="/skills" className="inline-block mt-4 underline text-sm">Browse skills</Link></div>
         </section>
 
       </section>

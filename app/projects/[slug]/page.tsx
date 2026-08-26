@@ -1,18 +1,18 @@
 import { projects } from '../../../data/projects';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
+import { notFound } from 'next/navigation';
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
-export default function ProjectDetail({ params }: Props){
-  const project = projects.find(p=> p.slug === params.slug);
-  if(!project) return (
-    <main>
-      <Header />
-      <section className="max-w-4xl mx-auto p-8">Project not found</section>
-      <Footer />
-    </main>
-  )
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export default async function ProjectDetail({ params }: Props){
+  const { slug } = await params;
+  const project = projects.find(p=> p.slug === slug);
+  if(!project) notFound();
   return (
     <main>
       <Header />

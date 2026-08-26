@@ -2,7 +2,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 export default function Resume(){
-  const pdfPath = '/Shriya_Patel_Software_Resume.pdf';
+  const pdfPath = '/Shriya_Patel_Resume.pdf';
   return (
     <main>
       <Header />
