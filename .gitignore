@@ -7,3 +7,5 @@ dist
 coverage
 .playwright
 public/Shriya_Patel_Software_Resume.pdf
+tsconfig.tsbuildinfo
+joblog.txt
