@@ -51,9 +51,8 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 border-t border-border pt-6 text-xs text-muted">
           <p>© {new Date().getFullYear()} Shriya Patel. All rights reserved.</p>
-          <p>Built with Next.js &amp; Tailwind CSS · Privacy-first, email-only contact.</p>
         </div>
       </div>
     </footer>

@@ -13,6 +13,12 @@ const nextConfig = {
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=()' },
           { key: 'Content-Security-Policy', value: csp }
         ]
+      },
+      {
+        // The resume PDF is previewed in an iframe on /resume; allow same-origin
+        // framing for this asset only (still blocked from cross-site framing).
+        source: '/Shriya_Patel_Resume.pdf',
+        headers: [{ key: 'X-Frame-Options', value: 'SAMEORIGIN' }]
       }
     ];
   }
