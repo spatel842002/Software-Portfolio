@@ -8,7 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function Resume() {
-  const pdfPath = '/Shriya_Patel_Resume.pdf';
+  // Filename matches the .gitignore rule and AGENTS.md's stated convention
+  // on purpose -- the PDF is provided locally at build/deploy time and must
+  // never be committed to this public repo.
+  const pdfPath = '/Shriya_Patel_Software_Resume.pdf';
   return (
     <main id="main">
       <Header />
@@ -26,7 +29,7 @@ export default function Resume() {
           </a>
           <a
             href={pdfPath}
-            download="Shriya_Patel_Resume.pdf"
+            download="Shriya_Patel_Software_Resume.pdf"
             className="focus-ring inline-flex items-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-surface-hover"
           >
             <Download size={16} /> Download Resume
